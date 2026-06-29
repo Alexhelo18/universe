@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Universe - About</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo"></div>
+      <span class="brand">Universe</span>
+    </div>
+
+    <!-- HAMBURGER MENU (mobile) -->
+    <button class="hamburger" id="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MENU -->
+    <div class="nav-right" id="nav-menu">
+      <a href="index.html">Feed</a>
+      <a id="publish-link" href="article.html">Pubblica</a>
+      <a href="about.html">About</a>
+      <a id="login-link" href="login.html">Login</a>
+      <button id="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <section class="about-hero">
+    <h1>Chi siamo</h1>
+    <p>Universe è un progetto nato per rendere l’economia accessibile a tutti.</p>
+  </section>
+
+  <section class="about-content">
+    <div class="about-card">
+      <h2>La nostra missione</h2>
+      <p>
+        Crediamo che l’economia non debba essere complicata. Universe nasce per spiegare concetti complessi in modo semplice, chiaro e diretto, con articoli brevi, esempi concreti e un linguaggio comprensibile.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h2>Perché Universe?</h2>
+      <p>
+        In un mondo dove l’informazione è ovunque, la semplicità è un valore. Universe vuole essere un punto di riferimento per chi cerca contenuti affidabili, sintetici e utili per comprendere meglio ciò che accade nel mondo economico.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h2>Il progetto</h2>
+      <p>
+        Universe è in continua evoluzione: nuovi articoli, nuove funzionalità, un design sempre più pulito e un’esperienza pensata per chi vuole imparare senza perdere tempo.
+      </p>
+    </div>
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

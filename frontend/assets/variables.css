@@ -1,0 +1,70 @@
+:root {
+  /* ===========================
+     COLORI PRINCIPALI
+  ============================ */
+
+  --black: #111;
+  --dark-gray: #222;
+  --gray: #555;
+  --light-gray: #ccc;
+  --white: #fff;
+  --background: #f5f5f5;
+
+  /* ===========================
+     COLORI BRAND
+  ============================ */
+
+  --brand-primary: #007bff;
+  --brand-primary-hover: #0056d2;
+
+  --brand-success: #28a745;
+  --brand-success-hover: #1e7e34;
+
+  --brand-danger: #d9534f;
+  --brand-danger-hover: #b52f2b;
+
+  /* ===========================
+     NAVBAR
+  ============================ */
+
+  --navbar-bg: var(--black);
+  --navbar-text: var(--white);
+
+  /* ===========================
+     CARD ARTICOLI
+  ============================ */
+
+  --card-bg: var(--white);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+
+  /* ===========================
+     FORM
+  ============================ */
+
+  --input-border: var(--light-gray);
+  --input-bg: var(--white);
+
+  /* ===========================
+     TOAST
+  ============================ */
+
+  --toast-bg: var(--black);
+  --toast-text: var(--white);
+
+  /* ===========================
+     BOTTONI ADMIN
+  ============================ */
+
+  --edit-btn-bg: var(--brand-primary);
+  --edit-btn-hover: var(--brand-primary-hover);
+
+  --delete-btn-bg: var(--brand-danger);
+  --delete-btn-hover: var(--brand-danger-hover);
+
+  /* ===========================
+     BOTTONI GENERALI
+  ============================ */
+
+  --btn-bg: var(--brand-success);
+  --btn-hover: var(--brand-success-hover);
+}

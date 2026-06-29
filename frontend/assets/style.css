@@ -1,0 +1,628 @@
+/* ===========================
+   RESET & BASE
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #fafafa;
+  color: #222;
+  padding-bottom: 80px;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar {
+  width: 100%;
+  background: #ffffff;
+  color: #111;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100' fill='none' stroke='black' stroke-width='4'><circle cx='50' cy='50' r='30'/><ellipse cx='50' cy='50' rx='45' ry='18'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* ===========================
+   NAVBAR LINKS
+=========================== */
+
+.nav-right a,
+.nav-right button {
+  margin-left: 15px;
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+
+.nav-right a:hover,
+.nav-right button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ===========================
+   HAMBURGER MENU
+=========================== */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #111;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero {
+  background: #ffffff;
+  color: #111;
+  padding: 40px 25px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* ===========================
+   ARTICLE CARD
+=========================== */
+
+.article-card {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.article-card h2 {
+  margin-bottom: 10px;
+}
+
+.article-card p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* ===========================
+   ARTICLE ACTIONS
+=========================== */
+
+.article-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.article-actions button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.edit-btn {
+  background: #007bff;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #0056d2;
+}
+
+.delete-btn {
+  background: #d9534f;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #b52f2b;
+}
+
+/* ===========================
+   AUTH PAGES
+=========================== */
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.auth-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* ===========================
+   PASSWORD WRAPPER (OCCHIO MINIMAL)
+=========================== */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eye-icon {
+  width: 22px;
+  height: 22px;
+  fill: #555;
+  transition: 0.25s ease;
+}
+
+.toggle-password:hover .eye-icon {
+  fill: #000;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+.auth-card button:hover {
+  background: #333;
+}
+
+.switch-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.switch-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   PUBLISH FORM
+=========================== */
+
+form {
+  width: 90%;
+  max-width: 700px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form input,
+form textarea {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+form button {
+  padding: 12px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s ease;
+}
+
+form button:hover {
+  background: #333;
+}
+
+/* ===========================
+   TOAST
+=========================== */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #111;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   ABOUT PAGE
+=========================== */
+
+.about-hero {
+  background: #ffffff;
+  padding: 60px 25px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.about-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.about-hero p {
+  font-size: 18px;
+  color: #555;
+}
+
+.about-content {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.about-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.about-card h2 {
+  margin-bottom: 12px;
+  font-size: 24px;
+  color: #111;
+}
+
+.about-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* ===========================
+   ERROR MESSAGE
+=========================== */
+
+.error-msg {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  min-height: 18px;
+}
+
+/* ===========================
+   COMMENTS
+=========================== */
+
+.comments-box {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.comments-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.comment-item {
+  background: #fafafa;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.comment-item p {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.new-comment,
+.edit-comment {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background: #fff;
+  transition: 0.25s ease;
+}
+
+.new-comment:focus,
+.edit-comment:focus {
+  border-color: #000;
+  outline: none;
+}
+
+.add-comment-btn {
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  margin-top: 10px;
+}
+
+.add-comment-btn:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.comment-item button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  background: #f5f5f5;
+  color: #111;
+  transition: 0.25s ease;
+  margin-left: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.comment-item button:first-of-type {
+  background: #000;
+  color: #fff;
+}
+
+.comment-item button:first-of-type:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.comment-item button:last-of-type {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+.comment-item button:last-of-type:hover {
+  background: #e60000;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   RESPONSIVE + MENU MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 0;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: 0.3s ease;
+  }
+
+  .nav-right.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-right a,
+  .nav-right button {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    font-size: 18px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .nav-right a:last-child,
+  .nav-right button:last-child {
+    border-bottom: none;
+  }
+
+  /* ARTICLE RESPONSIVE */
+  .article-card {
+    width: 95%;
+    padding: 18px;
+  }
+
+  .article-card h2 {
+    font-size: 22px;
+  }
+
+  .article-card p {
+    font-size: 16px;
+  }
+}
+
+/* ===========================
+   SMALL PHONES
+=========================== */
+
+@media (max-width: 480px) {
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .article-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .article-card h2 {
+    font-size: 20px;
+  }
+
+  .article-card p {
+    font-size: 15px;
+  }
+
+  .auth-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  form {
+    width: 95%;
+  }
+
+  .comments-box {
+    padding: 15px;
+  }
+
+  .new-comment,
+  .edit-comment {
+    font-size: 14px;
+  }
+
+  .add-comment-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

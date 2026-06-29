@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "email": "admin@universe.com",
+      "password": "$2b$10$.iupOMsfD584FYBFAPF/hutj2D.0HcaVKm8lPwZQuQ/l2AfpuYoDS",
+      "role": "admin"
+    },
+    {
+      "nome": "Alessio",
+      "cognome": "Xhelo",
+      "username": "alexhelo18",
+      "email": "ale.xhelo1812@gmail.com",
+      "password": "$2b$10$mCodcEBrsmlK2XUKT75dCubkzUBXanweWnPIz4DplQDnT9btlurXe",
+      "role": "user"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1782718918738,
+      "title": "Ciao",
+      "content": "Ciao",
+      "author": "admin@universe.com",
+      "createdAt": "2026-06-29T07:41:58.738Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1782719845205,
+      "articleId": 1782718918738,
+      "author": "alexhelo18",
+      "content": "Ciao",
+      "createdAt": "2026-06-29T07:57:25.205Z"
+    }
+  ]
+}

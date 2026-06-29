@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Universe - Feed</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo"></div>
+      <span class="brand">Universe</span>
+    </div>
+
+    <!-- HAMBURGER MENU (mobile) -->
+    <button class="hamburger" id="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- MENU -->
+    <div class="nav-right" id="nav-menu">
+      <a href="index.html">Feed</a>
+      <a id="publish-link" href="article.html">Pubblica</a>
+      <a href="about.html">About</a>
+      <a id="login-link" href="login.html">Login</a>
+      <button id="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Universe</h1>
+    <p>Economia spiegata semplice.</p>
+  </section>
+
+  <h1 style="text-align:center; margin-top:20px;">Articoli pubblicati</h1>
+
+  <div id="feed"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    loadFeed();
+  </script>
+</body>
+</html>

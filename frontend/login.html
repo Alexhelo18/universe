@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Universe - Login</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo"></div>
+      <span class="brand">Universe</span>
+    </div>
+
+    <button class="hamburger" id="hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-right" id="nav-menu">
+      <a href="index.html">Feed</a>
+      <a id="publish-link" href="article.html">Pubblica</a>
+      <a href="about.html">About</a>
+      <a id="login-link" href="login.html">Login</a>
+      <button id="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h2>Accedi</h2>
+
+      <form onsubmit="handleLogin(event)">
+        <input id="log-email" type="email" placeholder="Email" required>
+
+        <!-- PASSWORD CON OCCHIO MINIMAL SVG -->
+        <div class="password-wrapper">
+          <input id="log-password" type="password" placeholder="Password" required>
+
+          <span class="toggle-password" onclick="togglePassword('log-password', this)">
+            <svg class="eye-icon" viewBox="0 0 24 24">
+              <path d="M12 4.5C7 4.5 2.7 7.4 1 12c1.7 4.6 6 7.5 11 7.5s9.3-2.9 11-7.5c-1.7-4.6-6-7.5-11-7.5zm0 12a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/>
+            </svg>
+          </span>
+        </div>
+
+        <p id="login-error" class="error-msg"></p>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="switch-link">
+        Non hai un account? <a href="register.html">Registrati</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
