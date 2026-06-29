@@ -5,21 +5,33 @@ module.exports = (readDB, writeDB) => {
   const router = express.Router();
 
   // GET commenti di un articolo
-  router.get("/:articleId", (req, res) => {
-    const db = readDB();
-    const comments = db.comments.filter(c => c.articleId == req.params.articleId);
+  router.get("/:articleId", async (req, res) => {
+    const db = await readDB();
+
+    // Se non esiste ancora la chiave comments, restituiamo array vuoto
+    const comments = db.comments?.filter(c => c.articleId == req.params.articleId) || [];
+
     res.json(comments);
   });
 
   // POST nuovo commento
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
-    const user = jwt.verify(token, "SECRET_KEY");
+    let user;
+    try {
+      user = jwt.verify(token, "SECRET_KEY");
+    } catch {
+      return res.status(401).json({ msg: "Token non valido" });
+    }
+
     const { articleId, content } = req.body;
 
-    const db = readDB();
+    const db = await readDB();
+
+    // Se non esiste ancora la chiave comments, la creiamo
+    if (!db.comments) db.comments = [];
 
     const newComment = {
       id: Date.now(),
@@ -30,18 +42,26 @@ module.exports = (readDB, writeDB) => {
     };
 
     db.comments.push(newComment);
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Commento aggiunto", comment: newComment });
   });
 
   // PATCH modifica commento
-  router.patch("/:id", (req, res) => {
+  router.patch("/:id", async (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
-    const user = jwt.verify(token, "SECRET_KEY");
-    const db = readDB();
+    let user;
+    try {
+      user = jwt.verify(token, "SECRET_KEY");
+    } catch {
+      return res.status(401).json({ msg: "Token non valido" });
+    }
+
+    const db = await readDB();
+
+    if (!db.comments) return res.status(404).json({ msg: "Nessun commento presente" });
 
     const comment = db.comments.find(c => c.id == req.params.id);
     if (!comment) return res.status(404).json({ msg: "Commento non trovato" });
@@ -51,18 +71,26 @@ module.exports = (readDB, writeDB) => {
     }
 
     comment.content = req.body.content;
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Commento aggiornato", comment });
   });
 
   // DELETE elimina commento
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", async (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
-    const user = jwt.verify(token, "SECRET_KEY");
-    const db = readDB();
+    let user;
+    try {
+      user = jwt.verify(token, "SECRET_KEY");
+    } catch {
+      return res.status(401).json({ msg: "Token non valido" });
+    }
+
+    const db = await readDB();
+
+    if (!db.comments) return res.status(404).json({ msg: "Nessun commento presente" });
 
     const comment = db.comments.find(c => c.id == req.params.id);
     if (!comment) return res.status(404).json({ msg: "Commento non trovato" });
@@ -72,7 +100,7 @@ module.exports = (readDB, writeDB) => {
     }
 
     db.comments = db.comments.filter(c => c.id != req.params.id);
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Commento eliminato" });
   });

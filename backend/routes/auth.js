@@ -10,7 +10,11 @@ module.exports = (readDB, writeDB) => {
   // ===========================
   router.post("/register", async (req, res) => {
     const { nome, cognome, username, email, password } = req.body;
-    const db = readDB();
+
+    const db = await readDB();
+
+    // Se non esiste ancora la chiave users, la creiamo
+    if (!db.users) db.users = [];
 
     // Controllo email già registrata
     const emailExists = db.users.find(u => u.email === email);
@@ -36,7 +40,7 @@ module.exports = (readDB, writeDB) => {
     };
 
     db.users.push(newUser);
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Registrazione completata" });
   });
@@ -46,7 +50,12 @@ module.exports = (readDB, writeDB) => {
   // ===========================
   router.post("/login", async (req, res) => {
     const { email, password } = req.body;
-    const db = readDB();
+
+    const db = await readDB();
+
+    if (!db.users) {
+      return res.json({ msg: "Nessun utente registrato" });
+    }
 
     const user = db.users.find(u => u.email === email);
     if (!user) {

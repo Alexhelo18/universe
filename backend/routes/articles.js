@@ -5,13 +5,17 @@ module.exports = (readDB, writeDB) => {
   const router = express.Router();
 
   // GET articoli
-  router.get("/", (req, res) => {
-    const db = readDB();
-    res.json(db.articles);
+  router.get("/", async (req, res) => {
+    const db = await readDB();
+
+    // Se non esiste ancora la chiave articles, restituiamo array vuoto
+    const articles = db.articles || [];
+
+    res.json(articles);
   });
 
   // POST nuovo articolo (solo admin)
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const token = req.header("Authorization");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
@@ -27,10 +31,14 @@ module.exports = (readDB, writeDB) => {
     }
 
     const { title, content, author } = req.body;
-    const db = readDB();
+
+    const db = await readDB();
+
+    // Se non esiste ancora la chiave articles, la creiamo
+    if (!db.articles) db.articles = [];
 
     const newArticle = {
-      id: Date.now(),   // ⭐ ID GENERATO CORRETTAMENTE
+      id: Date.now(),
       title,
       content,
       author,
@@ -38,13 +46,13 @@ module.exports = (readDB, writeDB) => {
     };
 
     db.articles.push(newArticle);
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Articolo pubblicato", article: newArticle });
   });
 
   // PATCH modifica articolo (solo admin)
-  router.patch("/:id", (req, res) => {
+  router.patch("/:id", async (req, res) => {
     const token = req.header("Authorization");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
@@ -59,7 +67,10 @@ module.exports = (readDB, writeDB) => {
       return res.status(403).json({ msg: "Accesso riservato agli admin" });
     }
 
-    const db = readDB();
+    const db = await readDB();
+
+    if (!db.articles) return res.status(404).json({ msg: "Nessun articolo presente" });
+
     const article = db.articles.find(a => a.id == req.params.id);
 
     if (!article) return res.status(404).json({ msg: "Articolo non trovato" });
@@ -67,13 +78,13 @@ module.exports = (readDB, writeDB) => {
     article.title = req.body.title;
     article.content = req.body.content;
 
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Articolo aggiornato", article });
   });
 
   // DELETE elimina articolo (solo admin)
-  router.delete("/:id", (req, res) => {
+  router.delete("/:id", async (req, res) => {
     const token = req.header("Authorization");
     if (!token) return res.status(401).json({ msg: "Token mancante" });
 
@@ -88,13 +99,16 @@ module.exports = (readDB, writeDB) => {
       return res.status(403).json({ msg: "Accesso riservato agli admin" });
     }
 
-    const db = readDB();
+    const db = await readDB();
+
+    if (!db.articles) return res.status(404).json({ msg: "Nessun articolo presente" });
+
     const index = db.articles.findIndex(a => a.id == req.params.id);
 
     if (index === -1) return res.status(404).json({ msg: "Articolo non trovato" });
 
     db.articles.splice(index, 1);
-    writeDB(db);
+    await writeDB(db);
 
     res.json({ msg: "Articolo eliminato" });
   });

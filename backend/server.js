@@ -1,20 +1,35 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
-const path = require("path");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const dbPath = path.join(__dirname, "database.json");
+// URL del tuo JSONBin
+const BIN_URL = "https://api.jsonbin.io/v3/b/6a42382fda38895dfe0f00a6";
 
-function readDB() {
-  return JSON.parse(fs.readFileSync(dbPath, "utf8"));
+// READ DB da JSONBin
+async function readDB() {
+  const res = await fetch(`${BIN_URL}/latest`, {
+    headers: {
+      "X-Master-Key": process.env.JSONBIN_KEY
+    }
+  });
+
+  const data = await res.json();
+  return data.record; // JSONBin mette i dati dentro "record"
 }
 
-function writeDB(data) {
-  fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
+// WRITE DB su JSONBin
+async function writeDB(newData) {
+  await fetch(BIN_URL, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Master-Key": process.env.JSONBIN_KEY
+    },
+    body: JSON.stringify(newData)
+  });
 }
 
 // ROUTES
@@ -26,6 +41,9 @@ app.use("/auth", authRoutes);
 app.use("/articles", articleRoutes);
 app.use("/comments", commentRoutes);
 
-app.listen(3001, () => {
-  console.log("Backend avviato sulla porta 3001");
+// PORT per Render
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Backend avviato sulla porta ${PORT}`);
 });
